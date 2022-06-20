@@ -33,6 +33,8 @@ gem 'webpacker',
     '~> 4.0'
 gem 'will_paginate'
 gem 'will_paginate-bootstrap4'
+gem 'slim'
+gem 'slim-rails'
 
 group :development,
       :test do
