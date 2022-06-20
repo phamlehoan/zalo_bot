@@ -66,6 +66,23 @@ jobs:
       - run:
           name: Rubocop
           command: bundle exec rubocop
+  # deploy:
+  #   machine: true
+  #   steps:
+  #     - checkout
+  #     - run: |-
+  #       cat >> ~/.netrc \<<EOF
+  #         machine api.heroku.com
+  #           login $HEROKU_USERNAME
+  #           password $HEROKU_PASSWORD
+  #         machine git.heroku.com
+  #           login $HEROKU_USERNAME
+  #           password $HEROKU_PASSWORD
+  #       EOF
+  #     - run: chmod 600 ~/.netrc
+  #     - run: heroku git:remote -a your_app
+  #     - run: git push heroku master:master -f
+  #     - run: heroku run rails db:migrate --app your_app
 
 workflows:
   version: 2
@@ -75,3 +92,10 @@ workflows:
       - rubocop:
           requires:
             - build
+      # - deploy:
+      #     requires:
+      #       - build
+      #       - rubocop
+      #     filters:
+      #       branches:
+      #         only: master
